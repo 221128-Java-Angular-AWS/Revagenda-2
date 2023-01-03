@@ -14,6 +14,7 @@ class DemoApplicationTests {
 		return 1;
 	}
 
+
 	@Test
 	void contextLoads() {
 		System.out.println("This is a test. Let's cause a merge conflict.");
@@ -23,6 +24,10 @@ class DemoApplicationTests {
 	void testTwo() {
 		//test
 		System.out.println("This might break it...");
+	}
+	
+	public void testAgain(int i) {
+		this.i = i;
 	}
 
 }
