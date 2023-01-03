@@ -15,10 +15,20 @@ class DemoApplicationTests {
 	}
 	
 	
-		@Test
-	void contextLoads() {
-		System.out.println("This is a test. Let's cause a merge conflict.");
+	void testTwo() {
+		//test
+		System.out.println("This caused merge conflicts");
 	}
+	
+	public void testAgain(int i) {
+		this.i = i;
+	}
+	
+	//stuff
+	//to
+	//confuse
+	//github
+
 	
 
 }
