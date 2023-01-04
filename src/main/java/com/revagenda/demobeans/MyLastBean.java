@@ -1,4 +1,4 @@
-package com.revagenda.beans;
+package com.revagenda.demobeans;
 
 import org.springframework.stereotype.Component;
 
