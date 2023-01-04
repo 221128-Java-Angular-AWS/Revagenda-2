@@ -1,4 +1,4 @@
-package com.revagenda.beans;
+package com.revagenda.demobeans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.Lifecycle;
