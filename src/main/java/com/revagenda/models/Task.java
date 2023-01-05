@@ -6,6 +6,19 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+/**
+ * This is a model or entity class. We mark it with the @Entity annotation which indicates to Spring that this
+ * is a class which describes objects we will want to persist in a database. These aren't beans, there's no need
+ * to scan the packages with the models. Spring is made aware of this class when we typify the repository.
+ *
+ * The annotations here come from the jakarta.persistence library, not from spring itself, though the library is
+ * a sub-dependency of the spring data JPA module. So, when we include a dependency for spring data, we also get
+ * jakarta and these annotations automatically.
+ *
+ * The @Table annotation allows us to set some attributes that control how spring (and hibernate) are going to
+ * build the table schema for us.
+ */
+
 @Entity
 @Table(name = "tasks", schema = "public")
 public class Task {
@@ -27,10 +40,15 @@ public class Task {
     @JsonBackReference
     private User user;
 
-    @Transient
-    @JsonIgnore
+    @Transient//transient sets this field to be ignored by spring data and hibernate. This will not be saved to the db.
+    @JsonIgnore//similar to @Transient, this tells the fasterXML objectmapper to ignore this field.
     private String transientMessage = "This never goes into the database, because it is marked @Transient";
 
+    /*
+    Remember that both the fasterXML objectmapper and hibernate both utilize a no-args constructor. If
+    you write a constructor and don't also explicitly include a no-args overload, objectmapper and hibernate will
+    throw exceptions.
+     */
     public Task() {
     }
 

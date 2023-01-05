@@ -6,7 +6,25 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+
+/**
+ * This is a model or entity class. We mark it with the @Entity annotation which indicates to Spring that this
+ * is a class which describes objects we will want to persist in a database. These aren't beans, there's no need
+ * to scan the packages with the models. Spring is made aware of this class when we typify the repository.
+ *
+ * The annotations here come from the jakarta.persistence library, not from spring itself, though the library is
+ * a sub-dependency of the spring data JPA module. So, when we include a dependency for spring data, we also get
+ * jakarta and these annotations automatically.
+ *
+ * The @Table annotation allows us to set some attributes that control how spring (and hibernate) are going to
+ * build the table schema for us.
+ */
+/*
+there is some redundancy in the attributes here. Both entity and table can be given the attribute to specify the
+table name, however only @Table can be given the schema.
+ */
 @Entity(name = "users")
+@Table(schema = "public")
 public class User {
     @Id
     @Column(name = "user_id")
