@@ -24,34 +24,31 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(value = "/{userId}")
+    @GetMapping(value = "/{username}")
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody User getUserByUsername(@PathVariable Integer userId) {
-        //do get request
-        return new User();
+    public @ResponseBody User getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
     }
+
 
     @PostMapping(value = "/new")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public @ResponseBody User createNewUser(@RequestBody User newUser) {
-        //do post request
-        return new User();
+        return userService.createUser(newUser);
     }
 
 
-    @PutMapping(value = "/{userId}")
+    @PutMapping(value = "/update")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody User updateUser(@PathVariable Integer userId) {
-        //do put request
-        return new User();
+    public @ResponseBody User updateUser(@RequestBody User user) {
+        return userService.updateUser(user);
     }
 
 
     @DeleteMapping(value = "/{userId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody User deleteUser(@PathVariable Integer userId) {
-        //do the "delete"
-        return new User();
+    public void deleteUser(@PathVariable Integer userId) {
+        userService.deleteUserById(userId);
     }
 
 }

@@ -30,32 +30,28 @@ public class TaskController {
 
     @GetMapping(value = "/{userId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody List<Task> getUserByUsername(@PathVariable Integer userId) {
-        //do get request
-        return new LinkedList<Task>();
+    public @ResponseBody List<Task> getTasksForUserByUserId(@PathVariable Integer userId) {
+        return taskService.testOurFindByUserIdMethod(userId);
     }
 
-    @PostMapping(value = "/new")
+    @PostMapping(value = "/new/{userId}")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody Task createNewTask(@RequestBody Task newTask) {
-        //do post request
-        return new Task();
+    public @ResponseBody Task createNewTask(@RequestBody Task newTask, @PathVariable Integer userId) {
+        return taskService.createNewTask(newTask, userId);
     }
 
 
-    @PutMapping(value = "/{taskId}")
+    @PutMapping(value = "/update")
     @ResponseStatus(value = HttpStatus.ACCEPTED)
-    public @ResponseBody Task updateTask(@PathVariable Integer taskId) {
-        //do put request
-        return new Task();
+    public @ResponseBody Task updateTask(@RequestBody Task task) {
+        return taskService.updateTask(task);
     }
 
 
-    @DeleteMapping(value = "/{userId}")
+    @DeleteMapping(value = "/{taskId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody Task deleteTask(@PathVariable Integer taskId) {
-        //do the "delete"
-        return new Task();
+    public void deleteTask(@PathVariable Integer taskId) {
+        taskService.deleteTask(taskId);
     }
 
 }
