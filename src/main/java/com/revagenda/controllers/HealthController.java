@@ -6,6 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This controller was originally included just to respond to pings with pongs. Later we may add some other
+ * health checking here.
+ */
 @Controller
 @RequestMapping("/health")
 public class HealthController {
