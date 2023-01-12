@@ -25,7 +25,7 @@ public class UserService {
             throw new IncorrectPasswordException("Incorrect password.");
         }
 
-        user.setPassword(password);//no need to transmit the plaintext pass back. Could even just set to null.
+        user.setPassword("");//no need to transmit the plaintext pass back.
         return user;
     }
 
