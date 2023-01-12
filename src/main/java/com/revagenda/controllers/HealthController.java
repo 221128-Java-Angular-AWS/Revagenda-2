@@ -27,7 +27,7 @@ public class HealthController {
      */
     @GetMapping(value = "/ping")
     @ResponseStatus(HttpStatus.OK)
-    public String ping() {
+    public @ResponseBody String ping() {
         return "{\"thing\": \"pong!\"}";
     }
 

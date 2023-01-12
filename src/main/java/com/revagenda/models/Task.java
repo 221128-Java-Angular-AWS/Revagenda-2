@@ -3,6 +3,7 @@ package com.revagenda.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Profile;
 
 import java.util.Objects;
 
@@ -18,7 +19,6 @@ import java.util.Objects;
  * The @Table annotation allows us to set some attributes that control how spring (and hibernate) are going to
  * build the table schema for us.
  */
-
 @Entity
 @Table(name = "tasks", schema = "public")
 public class Task {
