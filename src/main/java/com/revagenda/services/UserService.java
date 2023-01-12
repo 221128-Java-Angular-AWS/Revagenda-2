@@ -4,6 +4,7 @@ import com.revagenda.exceptions.IncorrectPasswordException;
 import com.revagenda.exceptions.UserNotFoundException;
 import com.revagenda.models.User;
 import com.revagenda.repositories.UserRepository;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +21,14 @@ public class UserService {
         User user = userRepo.findByUsername(username);
         if(user == null) {
             throw new UserNotFoundException("User " + username + " not found.");
-        } else if(!password.equals(user.getPassword())) {
+        } else if(!BCrypt.checkpw(password, user.getPassword())) {
             throw new IncorrectPasswordException("Incorrect password.");
         }
 
+        user.setPassword(password);//no need to transmit the plaintext pass back. Could even just set to null.
         return user;
     }
+
 
     public User getUserByUsername(String username) {
         return userRepo.findByUsername(username);
@@ -46,6 +49,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         return userRepo.save(user);
     }
 
