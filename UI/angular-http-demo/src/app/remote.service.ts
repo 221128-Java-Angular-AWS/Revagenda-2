@@ -14,7 +14,8 @@ export class RemoteService {
     this.http = http;
   }
 
-  baseUrl: string = 'http://localhost:8080';
+  //baseUrl: string = 'http://localhost:8080';
+  baseUrl: string = 'http://3.22.166.203:7777';
 
   postNewTask(newTask: Task) {
 
@@ -33,26 +34,26 @@ export class RemoteService {
 
   getAllTasksForUserId(id: number): Observable<Task[]> {
     return this.http.get<Task[]>(this.baseUrl + '/user/' + id + '/tasks')
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
   }
 
 
-    // Error handling
-    errorHandl(error: any) {
-      let errorMessage = '';
-      if(error.error instanceof ErrorEvent) {
-        // Get client-side error
-        errorMessage = error.error.message;
-      } else {
-        // Get server-side error
-        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-      }
-      console.log(errorMessage);
-      return throwError(errorMessage);
+  // Error handling
+  errorHandl(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  }
 
 }
 
