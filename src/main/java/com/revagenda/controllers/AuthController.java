@@ -50,6 +50,7 @@ public class AuthController {
     }
 
 
+
     /*
     We can do exception handling in one of two ways. Traditionally, these below exception handlers are
     for handling pre-defined checked exceptions, like SQLException or IOException.
